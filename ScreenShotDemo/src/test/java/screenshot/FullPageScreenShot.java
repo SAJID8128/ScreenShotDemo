@@ -24,7 +24,9 @@ public class FullPageScreenShot {
 
 		// Image #1
 		openApp();
-		driver.findElement(By.xpath("//a[contains(text(),'Superman')]")).click();
+		driver.findElement(
+				By.xpath("//*[@id=\"block-system-main\"]/div/div/div[3]/div[3]/div/div/div[2]/div[1]/div[3]/a"))
+				.click();
 		captureImage();
 		System.out.println("SUPERMAN");
 		closeApp();
@@ -85,7 +87,7 @@ public class FullPageScreenShot {
 
 	public static void openApp() {
 
-		// Opens App
+		// Opens Application
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		// Opens Application
@@ -109,8 +111,9 @@ public class FullPageScreenShot {
 				.takeScreenshot(driver);
 
 		try {
-			ImageIO.write(screenshot.getImage(), "PNG", new File(
-					"/Users/nyla/eclipse-workspace/ScreenShotDemo/screenshot.FullPage/" + screenshotfilename + ".png"));
+			ImageIO.write(screenshot.getImage(), "PNG",
+					new File("/Users/nyla/Git/ScreenShotDemo/ScreenShotDemo/screenshot.FullPage/" + screenshotfilename
+							+ ".png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -118,44 +121,11 @@ public class FullPageScreenShot {
 
 	}
 
-	// Closes App
+	// Closes Application
 	public static void closeApp() {
 
 		driver.close();
+		System.out.println("********** Closing the Application **********");
 	}
 
 }
-
-/*
- * public static void openApp() {
- * 
- * WebDriverManager.chromedriver().setup(); driver = new ChromeDriver();
- * driver.get(
- * "https://nordic.ign.com/volume/25483/gallery/the-top-25-heroes-of-dc-comics?p=1"
- * ); driver.manage().window().maximize();
- * driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
- * driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
- * System.out.println("********** Opening the Application **********"); }
- * 
- * public static void closeApp() {
- * 
- * driver.close();
- * System.out.println("++++++++++ Closing the Application ++++++++++");
- * 
- * // Close Fullscreen public static void closeFullScreen() {
- * driver.findElement(By.xpath("//span[@id='gallery-fullscreen-close']")).click(
- * ); System.out.println("Closing Fullscreen"); }
- * 
- * }
- */
-
-/*
- * Screenshot screen = new
- * AShot().shootingStrategy(ShootingStrategies.viewportPasting(100)).
- * takeScreenshot(driver);
- * 
- * try { ImageIO.write(screen.getImage(), "PNG", new File(
- * "/Users/nyla/eclipse-workspace/ScreenShotDemo/screenshot.SimpleFullPage/Ashot.png"
- * )); } catch (IOException e) { // TODO Auto-generated catch block
- * e.printStackTrace(); }
- */
